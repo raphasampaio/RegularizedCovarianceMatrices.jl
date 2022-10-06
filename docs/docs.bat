@@ -1,0 +1,5 @@
+@echo off
+
+SET DOCUMENTER_DIR=%~dp0
+
+%JULIA_167% --project=%DOCUMENTER_DIR% %DOCUMENTER_DIR%\make.jl
