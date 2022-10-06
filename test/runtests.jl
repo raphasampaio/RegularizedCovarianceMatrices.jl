@@ -1,8 +1,7 @@
-using Test
-using RegularizedCovariances
-
 using Random
+using RegularizedCovariances
 using ScikitLearn: @sk_import, fit!, fit_transform!, predict, score
+using Test
 using TimerOutputs
 
 @sk_import covariance:(EmpiricalCovariance, ShrunkCovariance, OAS, LedoitWolf)
