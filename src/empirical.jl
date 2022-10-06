@@ -22,20 +22,35 @@ function fit(estimator::EmpiricalCovariance, X::AbstractMatrix{<:Real}; mu::Abst
     return empirical(estimator, X, mu = mu)
 end
 
-function fit(estimator::EmpiricalCovariance, X::AbstractMatrix{<:Real}, weights::AbstractVector{<:Real}; mu::AbstractVector{<:Real} = get_mu(X, weights))
+function fit(
+    estimator::EmpiricalCovariance,
+    X::AbstractMatrix{<:Real},
+    weights::AbstractVector{<:Real};
+    mu::AbstractVector{<:Real} = get_mu(X, weights)
+)
     return empirical(estimator, X, weights, mu = mu)
 end
 
-function fit!(estimator::EmpiricalCovariance, X::AbstractMatrix{<:Real}, covariance::AbstractMatrix{<:Real}, mu::AbstractVector{<:Real})::Nothing
+function fit!(
+    estimator::EmpiricalCovariance,
+    X::AbstractMatrix{<:Real},
+    covariance::AbstractMatrix{<:Real},
+    mu::AbstractVector{<:Real}
+)::Nothing
     empirical!(estimator, X, covariance, mu)
     return nothing
 end
 
-function fit!(estimator::EmpiricalCovariance, X::AbstractMatrix{<:Real}, weights::AbstractVector{<:Real}, covariance::AbstractMatrix{<:Real}, mu::AbstractVector{<:Real})
+function fit!(
+    estimator::EmpiricalCovariance,
+    X::AbstractMatrix{<:Real},
+    weights::AbstractVector{<:Real},
+    covariance::AbstractMatrix{<:Real},
+    mu::AbstractVector{<:Real}
+)
     empirical!(estimator, X, weights, covariance, mu)
     return nothing
 end
-
 
 # # function old_empirical_covariance(X::Matrix{T}; weights = ones(size(X, 1)), mu = get_mu(X, weights)) where {T}
 # #     translate_to_zero!(X, mu)
@@ -43,5 +58,3 @@ end
 # #     translate_to_mu!(X, mu)
 # #     return Symmetric(covariance), mu
 # # end
-
-

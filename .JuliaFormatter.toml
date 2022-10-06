@@ -7,3 +7,4 @@ remove_extra_newlines = true
 always_use_return = true
 short_to_long_function_def = true
 trailing_comma = false
+annotate_untyped_fields_with_any = true

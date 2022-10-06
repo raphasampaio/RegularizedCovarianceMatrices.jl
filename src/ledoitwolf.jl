@@ -55,7 +55,12 @@ function get_shrinkage(estimator::LedoitWolfCovariance, X::AbstractMatrix{<:Real
     return (beta <= 0) ? 0.0 : beta / delta
 end
 
-function fit(estimator::LedoitWolfCovariance, X::AbstractMatrix{<:Real}, weights = ones(size(X, 1)), mu = dropdims(sum(X .* weights, dims = 1) / sum(weights), dims = 1))
+function fit(
+    estimator::LedoitWolfCovariance,
+    X::AbstractMatrix{<:Real},
+    weights = ones(size(X, 1)),
+    mu = dropdims(sum(X .* weights, dims = 1) / sum(weights), dims = 1)
+)
     n = size(X, 1)
     d = size(X, 2)
     block_size = 1000
@@ -94,7 +99,13 @@ function fit!(estimator::LedoitWolfCovariance, X::AbstractMatrix{<:Real}, covari
     return shrunk!(estimator, X, covariance, mu, shrinkage = shrinkage)
 end
 
-function fit!(estimator::LedoitWolfCovariance, X::AbstractMatrix{<:Real}, weights::AbstractVector{<:Real}, covariance::AbstractMatrix{<:Real}, mu::AbstractVector{<:Real})
+function fit!(
+    estimator::LedoitWolfCovariance,
+    X::AbstractMatrix{<:Real},
+    weights::AbstractVector{<:Real},
+    covariance::AbstractMatrix{<:Real},
+    mu::AbstractVector{<:Real}
+)
     update_mu!(X, weights, mu)
     shrinkage = get_shrinkage(estimator, X, mu)
     return shrunk!(estimator, X, weights, covariance, mu, shrinkage = shrinkage)

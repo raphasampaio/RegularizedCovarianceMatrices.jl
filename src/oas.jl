@@ -33,7 +33,12 @@ function get_shrinkage(estimator::OASCovariance, X::AbstractMatrix{<:Real}, cova
     return (den == 0) ? 1.0 : min(num / den, 1.0)
 end
 
-function fit(estimator::OASCovariance, X::AbstractMatrix{<:Real}, weights::AbstractVector{<:Real} = ones(size(X, 1)), mu::AbstractVector{<:Real} = get_mu(X, weights))
+function fit(
+    estimator::OASCovariance,
+    X::AbstractMatrix{<:Real},
+    weights::AbstractVector{<:Real} = ones(size(X, 1)),
+    mu::AbstractVector{<:Real} = get_mu(X, weights)
+)
     n, d = size(X)
 
     translate_to_zero!(X, mu)
@@ -59,7 +64,13 @@ function fit!(estimator::OASCovariance, X::AbstractMatrix{<:Real}, covariance::A
     return nothing
 end
 
-function fit!(estimator::OASCovariance, X::AbstractMatrix{<:Real}, weights::AbstractVector{<:Real}, covariance::AbstractMatrix{<:Real}, mu::AbstractVector{<:Real})::Nothing
+function fit!(
+    estimator::OASCovariance,
+    X::AbstractMatrix{<:Real},
+    weights::AbstractVector{<:Real},
+    covariance::AbstractMatrix{<:Real},
+    mu::AbstractVector{<:Real}
+)::Nothing
     empirical!(estimator, X, weights, covariance, mu)
     shrinkage = get_shrinkage(estimator, X, covariance)
     shrunk_matrix!(covariance, shrinkage)

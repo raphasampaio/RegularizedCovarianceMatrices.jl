@@ -23,16 +23,32 @@ function fit(estimator::ShrunkCovariance, X::AbstractMatrix{<:Real}; mu::Abstrac
     return shrunk(estimator, X, mu = mu, shrinkage = estimator.shrinkage)
 end
 
-function fit(estimator::ShrunkCovariance, X::AbstractMatrix{<:Real}, weights::AbstractVector{<:Real}; mu::AbstractVector{<:Real} = get_mu(X, weights))
+function fit(
+    estimator::ShrunkCovariance,
+    X::AbstractMatrix{<:Real},
+    weights::AbstractVector{<:Real};
+    mu::AbstractVector{<:Real} = get_mu(X, weights)
+)
     return shrunk(estimator, X, weights, mu = mu, shrinkage = estimator.shrinkage)
 end
 
-function fit!(estimator::ShrunkCovariance, X::AbstractMatrix{<:Real}, covariance::AbstractMatrix{<:Real}, mu::AbstractVector{<:Real})::Nothing
+function fit!(
+    estimator::ShrunkCovariance,
+    X::AbstractMatrix{<:Real},
+    covariance::AbstractMatrix{<:Real},
+    mu::AbstractVector{<:Real}
+)::Nothing
     shrunk!(estimator, X, covariance, mu, shrinkage = estimator.shrinkage)
     return nothing
 end
 
-function fit!(estimator::ShrunkCovariance, X::AbstractMatrix{<:Real}, weights::AbstractVector{<:Real}, covariance::AbstractMatrix{<:Real}, mu::AbstractVector{<:Real})
+function fit!(
+    estimator::ShrunkCovariance,
+    X::AbstractMatrix{<:Real},
+    weights::AbstractVector{<:Real},
+    covariance::AbstractMatrix{<:Real},
+    mu::AbstractVector{<:Real}
+)
     shrunk!(estimator, X, weights, covariance, mu, shrinkage = estimator.shrinkage)
     return nothing
 end
