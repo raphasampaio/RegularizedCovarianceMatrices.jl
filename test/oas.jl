@@ -1,7 +1,7 @@
 function test_oas(original_X::Matrix{Float64}, original_weights::Vector{Float64})
     n = size(original_X, 1)
     d = size(original_X, 2)
-    estimator = OASCovariance(n, d)
+    estimator = OASCovarianceMatrix(n, d)
 
     X = copy(original_X)
     weights = copy(original_weights)

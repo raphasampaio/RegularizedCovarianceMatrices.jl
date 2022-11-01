@@ -1,7 +1,7 @@
 function test_ledoitwolf(original_X::Matrix{Float64}, original_weights::Vector{Float64})
     n = size(original_X, 1)
     d = size(original_X, 2)
-    estimator = LedoitWolfCovariance(n, d)
+    estimator = LedoitWolfCovarianceMatrix(n, d)
 
     X = copy(original_X)
     weights = copy(original_weights)

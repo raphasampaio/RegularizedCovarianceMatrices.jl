@@ -1,28 +1,15 @@
-struct LedoitWolfCovariance <: CovarianceEstimator
+struct LedoitWolfCovarianceMatrix <: CovarianceMatrixEstimator
     cache1::Matrix{Float64}
     cache2::Matrix{Float64}
     cache3::Matrix{Float64}
 
-    function LedoitWolfCovariance()
-        return new(zeros(0, 0), zeros(0, 0), zeros(0, 0))
-    end
-
-    function LedoitWolfCovariance(n::Int, d::Int)
+    function LedoitWolfCovarianceMatrix(n::Int, d::Int)
         return new(zeros(n, d), zeros(n, d), zeros(d, d))
     end
 end
 
-function update_cache!(estimator::LedoitWolfCovariance, n::Int, d::Int)
-    if n != size(estimator.cache1, 1) || d != size(estimator.cache1, 2)
-        estimator.cache1 = zeros(n, d)
-        estimator.cache2 = zeros(n, d)
-        estimator.cache3 = zeros(d, d)
-    end
-end
-
-function get_shrinkage(estimator::LedoitWolfCovariance, X::AbstractMatrix{<:Real}, mu::AbstractVector{<:Real})
+function get_shrinkage(estimator::LedoitWolfCovarianceMatrix, X::AbstractMatrix{<:Real}, mu::AbstractVector{<:Real})
     n, d = size(X)
-    update_cache!(estimator, n, d)
 
     block_size = 1000
     n_splits = round(n / block_size)
@@ -56,7 +43,7 @@ function get_shrinkage(estimator::LedoitWolfCovariance, X::AbstractMatrix{<:Real
 end
 
 function fit(
-    estimator::LedoitWolfCovariance,
+    estimator::LedoitWolfCovarianceMatrix,
     X::AbstractMatrix{<:Real},
     weights = ones(size(X, 1)),
     mu = dropdims(sum(X .* weights, dims = 1) / sum(weights), dims = 1)
@@ -93,14 +80,14 @@ function fit(
     return shrunk(estimator, X, weights, mu = mu, shrinkage = shrinkage)
 end
 
-function fit!(estimator::LedoitWolfCovariance, X::AbstractMatrix{<:Real}, covariance::AbstractMatrix{<:Real}, mu::AbstractVector{<:Real})
+function fit!(estimator::LedoitWolfCovarianceMatrix, X::AbstractMatrix{<:Real}, covariance::AbstractMatrix{<:Real}, mu::AbstractVector{<:Real})
     update_mu!(X, mu)
     shrinkage = get_shrinkage(estimator, X, mu)
     return shrunk!(estimator, X, covariance, mu, shrinkage = shrinkage)
 end
 
 function fit!(
-    estimator::LedoitWolfCovariance,
+    estimator::LedoitWolfCovarianceMatrix,
     X::AbstractMatrix{<:Real},
     weights::AbstractVector{<:Real},
     covariance::AbstractMatrix{<:Real},

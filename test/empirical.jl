@@ -1,6 +1,6 @@
 function test_empirical(original_X::Matrix{Float64}, original_weights::Vector{Float64})
     n, d = size(original_X)
-    estimator = RegularizedCovariances.EmpiricalCovariance(n, d)
+    estimator = RegularizedCovariances.EmpiricalCovarianceMatrix(n, d)
 
     X = copy(original_X)
     weights = copy(original_weights)

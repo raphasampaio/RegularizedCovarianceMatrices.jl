@@ -1,6 +1,10 @@
-abstract type CovarianceEstimator end
+abstract type CovarianceMatrixEstimator end
 
-function empirical(estimator::CovarianceEstimator, X::AbstractMatrix{<:Real}; mu::AbstractVector{<:Real} = get_mu(X))
+function empirical(
+    estimator::CovarianceMatrixEstimator, 
+    X::AbstractMatrix{<:Real}; 
+    mu::AbstractVector{<:Real} = get_mu(X)
+)
     n, d = size(X)
     translated = (X .- mu')
     covariance = (translated' * translated) ./ n
@@ -8,7 +12,7 @@ function empirical(estimator::CovarianceEstimator, X::AbstractMatrix{<:Real}; mu
 end
 
 function empirical(
-    estimator::CovarianceEstimator,
+    estimator::CovarianceMatrixEstimator,
     X::AbstractMatrix{<:Real},
     weights::AbstractVector{<:Real};
     mu::AbstractVector{<:Real} = get_mu(X, weights)
@@ -19,13 +23,12 @@ function empirical(
 end
 
 function empirical!(
-    estimator::CovarianceEstimator,
+    estimator::CovarianceMatrixEstimator,
     X::AbstractMatrix{<:Real},
     covariance::AbstractMatrix{<:Real},
     mu::AbstractVector{<:Real}
 )::Nothing
     n, d = size(X)
-    update_cache!(estimator, n, d)
 
     update_mu!(X, mu)
 
@@ -37,15 +40,12 @@ function empirical!(
 end
 
 function empirical!(
-    estimator::CovarianceEstimator,
+    estimator::CovarianceMatrixEstimator,
     X::AbstractMatrix{<:Real},
     weights::AbstractVector{<:Real},
     covariance::AbstractMatrix{<:Real},
     mu::AbstractVector{<:Real}
 )
-    n, d = size(X)
-    update_cache!(estimator, n, d)
-
     update_mu!(X, weights, mu)
 
     estimator.cache1 .= X .- mu'
@@ -57,14 +57,14 @@ function empirical!(
     return nothing
 end
 
-function shrunk(estimator::CovarianceEstimator, X::AbstractMatrix{<:Real}; mu::AbstractVector{<:Real} = get_mu(X), shrinkage::Float64 = 0.1)
+function shrunk(estimator::CovarianceMatrixEstimator, X::AbstractMatrix{<:Real}; mu::AbstractVector{<:Real} = get_mu(X), shrinkage::Float64 = 0.1)
     covariance, mu = empirical(estimator, X, mu = mu)
     shrunk = shrunk_matrix(covariance, shrinkage)
     return Symmetric(shrunk), mu
 end
 
 function shrunk(
-    estimator::CovarianceEstimator,
+    estimator::CovarianceMatrixEstimator,
     X::AbstractMatrix{<:Real},
     weights::AbstractVector{<:Real};
     mu::AbstractVector{<:Real} = get_mu(X, weights),
@@ -76,7 +76,7 @@ function shrunk(
 end
 
 function shrunk!(
-    estimator::CovarianceEstimator,
+    estimator::CovarianceMatrixEstimator,
     X::AbstractMatrix{<:Real},
     covariance::AbstractMatrix{<:Real},
     mu::AbstractVector{<:Real};
@@ -88,7 +88,7 @@ function shrunk!(
 end
 
 function shrunk!(
-    estimator::CovarianceEstimator,
+    estimator::CovarianceMatrixEstimator,
     X::AbstractMatrix{<:Real},
     weights::AbstractVector{<:Real},
     covariance::AbstractMatrix{<:Real},

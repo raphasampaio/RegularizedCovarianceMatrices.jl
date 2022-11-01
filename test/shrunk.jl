@@ -1,6 +1,6 @@
 function test_shrunk(original_X::Matrix{Float64}, original_weights::Vector{Float64})
     n, d = size(original_X)
-    estimator = RegularizedCovariances.ShrunkCovariance(n, d)
+    estimator = RegularizedCovariances.ShrunkCovarianceMatrix(n, d)
 
     X = copy(original_X)
     weights = copy(original_weights)
