@@ -1,6 +1,6 @@
 function test_empirical(original_X::Matrix{Float64}, original_weights::Vector{Float64})
     n, d = size(original_X)
-    estimator = RegularizedCovariances.EmpiricalCovarianceMatrix(n, d)
+    estimator = RegularizedCovarianceMatrices.EmpiricalCovarianceMatrix(n, d)
 
     X = copy(original_X)
     weights = copy(original_weights)
@@ -36,7 +36,7 @@ function test_empirical(original_X::Matrix{Float64}, original_weights::Vector{Fl
     mu = zeros(d)
     covariance = zeros(d, d)
 
-    @timeit "in-place" RegularizedCovariances.fit!(estimator, X, covariance, mu)
+    @timeit "in-place" RegularizedCovarianceMatrices.fit!(estimator, X, covariance, mu)
     @test X ≈ original_X
     @test covariance ≈ sklean_covariance
     @test mu ≈ sklearn_mu
@@ -46,7 +46,7 @@ function test_empirical(original_X::Matrix{Float64}, original_weights::Vector{Fl
     mu = zeros(d)
     covariance = zeros(d, d)
 
-    @timeit "weights - not-in-place" weights_covariance, weights_mu = RegularizedCovariances.fit(estimator, X, weights)
+    @timeit "weights - not-in-place" weights_covariance, weights_mu = RegularizedCovarianceMatrices.fit(estimator, X, weights)
     @test X ≈ original_X
 
     X = copy(original_X)
@@ -54,7 +54,7 @@ function test_empirical(original_X::Matrix{Float64}, original_weights::Vector{Fl
     mu = zeros(d)
     covariance = zeros(d, d)
 
-    @timeit "weights - in-place" RegularizedCovariances.fit!(estimator, X, weights, covariance, mu)
+    @timeit "weights - in-place" RegularizedCovarianceMatrices.fit!(estimator, X, weights, covariance, mu)
     @test original_X ≈ X
     @test weights_covariance ≈ covariance
     @test weights_mu ≈ mu

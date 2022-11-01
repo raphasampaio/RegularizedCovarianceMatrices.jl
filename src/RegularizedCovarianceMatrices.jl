@@ -1,4 +1,4 @@
-module RegularizedCovariances
+module RegularizedCovarianceMatrices
 
 using LinearAlgebra
 using Statistics

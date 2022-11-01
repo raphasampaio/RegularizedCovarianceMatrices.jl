@@ -1,5 +1,5 @@
 using Random
-using RegularizedCovariances
+using RegularizedCovarianceMatrices
 using ScikitLearn: @sk_import, fit!, fit_transform!, predict, score
 using Test
 using TimerOutputs
