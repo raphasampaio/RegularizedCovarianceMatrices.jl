@@ -14,7 +14,7 @@ include("ledoitwolf.jl")
 function test_all()
     Random.seed!(1)
     size = 10
-    ns = [2, 4, 8, 16, 32, 64, 128, 256, 512, 1024]
+    ns = [2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048]
 
     @testset "covariance tests" begin
         for i in 1:size, n in ns, d in ns
