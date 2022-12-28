@@ -9,8 +9,8 @@ struct ShrunkCovarianceMatrix <: CovarianceMatrixEstimator
 end
 
 function fit(
-    estimator::ShrunkCovarianceMatrix, 
-    X::AbstractMatrix{<:Real}; 
+    estimator::ShrunkCovarianceMatrix,
+    X::AbstractMatrix{<:Real};
     mu::AbstractVector{<:Real} = get_mu(X)
 )
     return shrunk(estimator, X, mu = mu, shrinkage = estimator.shrinkage)

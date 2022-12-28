@@ -8,8 +8,8 @@ struct EmpiricalCovarianceMatrix <: CovarianceMatrixEstimator
 end
 
 function fit(
-    estimator::EmpiricalCovarianceMatrix, 
-    X::AbstractMatrix{<:Real}; 
+    estimator::EmpiricalCovarianceMatrix,
+    X::AbstractMatrix{<:Real};
     mu::AbstractVector{<:Real} = get_mu(X)
 )
     return empirical(estimator, X, mu = mu)
@@ -44,10 +44,3 @@ function fit!(
     empirical!(estimator, X, weights, covariance, mu)
     return
 end
-
-# # function old_empirical_covariance(X::Matrix{T}; weights = ones(size(X, 1)), mu = get_mu(X, weights)) where {T}
-# #     translate_to_zero!(X, mu)
-# #     covariance = (X' * (weights .* X)) ./ sum(weights)
-# #     translate_to_mu!(X, mu)
-# #     return Symmetric(covariance), mu
-# # end

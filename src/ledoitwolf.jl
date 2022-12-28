@@ -8,11 +8,12 @@ struct LedoitWolfCovarianceMatrix <: CovarianceMatrixEstimator
     end
 end
 
-function get_shrinkage(estimator::LedoitWolfCovarianceMatrix, X::AbstractMatrix{<:Real}, mu::AbstractVector{<:Real})
+function get_shrinkage(
+    estimator::LedoitWolfCovarianceMatrix,
+    X::AbstractMatrix{<:Real},
+    mu::AbstractVector{<:Real}
+)
     n, d = size(X)
-
-    block_size = 1000
-    n_splits = round(n / block_size)
 
     estimator.cache1 .= X .- mu'
     estimator.cache2 .= estimator.cache1 .^ 2
@@ -29,14 +30,14 @@ function get_shrinkage(estimator::LedoitWolfCovarianceMatrix, X::AbstractMatrix{
     trace_mean = trace_sum / d
 
     mul!(estimator.cache3, estimator.cache2', estimator.cache2)
-    beta_ = sum(estimator.cache3)
+    beta_coefficients = sum(estimator.cache3)
 
     mul!(estimator.cache3, estimator.cache1', estimator.cache1)
     estimator.cache3 .= estimator.cache3 .^ 2
-    delta_ = sum(estimator.cache3) / (n^2)
+    delta_coefficients = sum(estimator.cache3) / (n^2)
 
-    beta = 1.0 / (n * d) * (beta_ / n - delta_)
-    delta = (delta_ - 2.0 * trace_mean * trace_sum + d * trace_mean .^ 2) / d
+    beta = 1.0 / (n * d) * (beta_coefficients / n - delta_coefficients)
+    delta = (delta_coefficients - 2.0 * trace_mean * trace_sum + d * trace_mean .^ 2) / d
 
     beta = min(beta, delta)
     return (beta <= 0) ? 0.0 : beta / delta
@@ -50,26 +51,22 @@ function fit(
 )
     n = size(X, 1)
     d = size(X, 2)
-    block_size = 1000
 
     translate_to_zero!(X, mu)
 
-    n_splits = round(n / block_size)
-
     X2 = X .^ 2
-    emp_cov_trace = sum(X2, dims = 1) / n
-    trace_mean = sum(emp_cov_trace) / d
-    beta_ = 0.0  # sum of the coefficients of <X2.T, X2>
-    delta_ = 0.0  # sum of the *squared* coefficients of <X.T, X>
-    # starting block computation
+    trace = sum(X2, dims = 1) / n
+    trace_mean = sum(trace) / d
+    beta_coefficients = 0.0
+    delta_coefficients = 0.0
 
-    delta_ += sum((X' * X) .^ 2)
-    delta_ /= (n^2)
+    delta_coefficients += sum((X' * X) .^ 2)
+    delta_coefficients /= (n^2)
 
-    beta_ += sum(X2' * X2)
+    beta_coefficients += sum(X2' * X2)
 
-    beta = 1.0 / (n * d) * (beta_ / n - delta_)
-    delta = delta_ - 2.0 * trace_mean * sum(emp_cov_trace) + d * trace_mean .^ 2
+    beta = 1.0 / (n * d) * (beta_coefficients / n - delta_coefficients)
+    delta = delta_coefficients - 2.0 * trace_mean * sum(trace) + d * trace_mean .^ 2
 
     delta /= d
     beta = min(beta, delta)
@@ -80,7 +77,12 @@ function fit(
     return shrunk(estimator, X, weights, mu = mu, shrinkage = shrinkage)
 end
 
-function fit!(estimator::LedoitWolfCovarianceMatrix, X::AbstractMatrix{<:Real}, covariance::AbstractMatrix{<:Real}, mu::AbstractVector{<:Real})
+function fit!(
+    estimator::LedoitWolfCovarianceMatrix,
+    X::AbstractMatrix{<:Real},
+    covariance::AbstractMatrix{<:Real},
+    mu::AbstractVector{<:Real}
+)
     update_mu!(X, mu)
     shrinkage = get_shrinkage(estimator, X, mu)
     return shrunk!(estimator, X, covariance, mu, shrinkage = shrinkage)

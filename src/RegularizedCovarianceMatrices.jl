@@ -3,13 +3,12 @@ module RegularizedCovarianceMatrices
 using LinearAlgebra
 using Statistics
 
-export 
-    fit, 
-    fit!, 
-    CovarianceMatrixEstimator, 
-    EmpiricalCovarianceMatrix, 
-    ShrunkCovarianceMatrix, 
-    OASCovarianceMatrix, 
+export fit,
+    fit!,
+    CovarianceMatrixEstimator,
+    EmpiricalCovarianceMatrix,
+    ShrunkCovarianceMatrix,
+    OASCovarianceMatrix,
     LedoitWolfCovarianceMatrix
 
 include("estimator.jl")

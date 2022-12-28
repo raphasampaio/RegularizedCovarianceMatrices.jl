@@ -1,8 +1,8 @@
 abstract type CovarianceMatrixEstimator end
 
 function empirical(
-    estimator::CovarianceMatrixEstimator, 
-    X::AbstractMatrix{<:Real}; 
+    estimator::CovarianceMatrixEstimator,
+    X::AbstractMatrix{<:Real};
     mu::AbstractVector{<:Real} = get_mu(X)
 )
     n, d = size(X)
@@ -57,7 +57,12 @@ function empirical!(
     return
 end
 
-function shrunk(estimator::CovarianceMatrixEstimator, X::AbstractMatrix{<:Real}; mu::AbstractVector{<:Real} = get_mu(X), shrinkage::Float64 = 0.1)
+function shrunk(
+    estimator::CovarianceMatrixEstimator,
+    X::AbstractMatrix{<:Real};
+    mu::AbstractVector{<:Real} = get_mu(X),
+    shrinkage::Float64 = 0.1
+)
     covariance, mu = empirical(estimator, X, mu = mu)
     shrunk = shrunk_matrix(covariance, shrinkage)
     return Symmetric(shrunk), mu
@@ -120,7 +125,11 @@ function update_mu!(X::AbstractMatrix{<:Real}, mu::AbstractVector{<:Real})
     end
 end
 
-function update_mu!(X::AbstractMatrix{<:Real}, weights::AbstractVector{<:Real}, mu::AbstractVector{<:Real})
+function update_mu!(
+    X::AbstractMatrix{<:Real},
+    weights::AbstractVector{<:Real},
+    mu::AbstractVector{<:Real}
+)
     n, d = size(X)
 
     sum_weights = sum(weights)
