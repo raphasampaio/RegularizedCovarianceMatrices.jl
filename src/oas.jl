@@ -1,10 +1,12 @@
 struct OASCovarianceMatrix <: CovarianceMatrixEstimator
+    n::Int
+    d::Int
     cache1::Matrix{Float64}
     cache2::Matrix{Float64}
     cache3::Matrix{Float64}
 
-    function OASCovarianceMatrix(n::Int, d::Int)
-        return new(zeros(n, d), zeros(n, d), zeros(d, d))
+    function OASCovarianceMatrix(n::Integer, d::Integer)
+        return new(n, d, zeros(n, d), zeros(n, d), zeros(d, d))
     end
 end
 
@@ -15,11 +17,14 @@ function get_shrinkage(
 )
     n, d = size(X)
 
+    @assert n == estimator.n
+    @assert d == estimator.d
+
     trace_mean = tr(covariance) / d
     estimator.cache3 .= covariance .^ 2
     alpha = mean(estimator.cache3)
-    num = alpha + trace_mean^2
-    den = (n + 1.0) * (alpha - (trace_mean^2) / d)
+    num = alpha + trace_mean ^ 2
+    den = (n + 1.0) * (alpha - (trace_mean ^ 2) / d)
 
     return (den == 0) ? 1.0 : min(num / den, 1.0)
 end

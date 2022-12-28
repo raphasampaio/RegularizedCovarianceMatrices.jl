@@ -1,10 +1,12 @@
 struct ShrunkCovarianceMatrix <: CovarianceMatrixEstimator
+    n::Int
+    d::Int
     shrinkage::Float64
     cache1::Matrix{Float64}
     cache2::Matrix{Float64}
 
-    function ShrunkCovarianceMatrix(n::Int, d::Int, shrinkage::Float64 = 0.1)
-        return new(shrinkage, zeros(n, d), zeros(n, d))
+    function ShrunkCovarianceMatrix(n::Integer, d::Integer, shrinkage::Float64 = 0.1)
+        return new(n, d, shrinkage, zeros(n, d), zeros(n, d))
     end
 end
 

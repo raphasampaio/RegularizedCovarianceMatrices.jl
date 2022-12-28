@@ -30,6 +30,9 @@ function empirical!(
 )
     n, d = size(X)
 
+    @assert n == estimator.n
+    @assert d == estimator.d
+
     update_mu!(X, mu)
 
     estimator.cache1 .= X .- mu'
@@ -46,6 +49,11 @@ function empirical!(
     covariance::AbstractMatrix{<:Real},
     mu::AbstractVector{<:Real}
 )
+    n, d = size(X)
+
+    @assert n == estimator.n
+    @assert d == estimator.d
+
     update_mu!(X, weights, mu)
 
     estimator.cache1 .= X .- mu'

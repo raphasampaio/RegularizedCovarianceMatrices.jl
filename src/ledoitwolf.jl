@@ -1,10 +1,12 @@
 struct LedoitWolfCovarianceMatrix <: CovarianceMatrixEstimator
+    n::Int
+    d::Int
     cache1::Matrix{Float64}
     cache2::Matrix{Float64}
     cache3::Matrix{Float64}
 
-    function LedoitWolfCovarianceMatrix(n::Int, d::Int)
-        return new(zeros(n, d), zeros(n, d), zeros(d, d))
+    function LedoitWolfCovarianceMatrix(n::Integer, d::Integer)
+        return new(n, d, zeros(n, d), zeros(n, d), zeros(d, d))
     end
 end
 
@@ -14,6 +16,9 @@ function get_shrinkage(
     mu::AbstractVector{<:Real}
 )
     n, d = size(X)
+
+    @assert n == estimator.n
+    @assert d == estimator.d
 
     estimator.cache1 .= X .- mu'
     estimator.cache2 .= estimator.cache1 .^ 2
