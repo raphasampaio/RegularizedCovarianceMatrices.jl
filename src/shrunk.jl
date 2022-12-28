@@ -5,7 +5,7 @@ struct ShrunkCovarianceMatrix <: CovarianceMatrixEstimator
     cache1::Matrix{Float64}
     cache2::Matrix{Float64}
 
-    function ShrunkCovarianceMatrix(n::Integer, d::Integer, λ::Float64 = 0.1)
+    function ShrunkCovarianceMatrix(n::Integer = 0, d::Integer = 0; λ::Float64 = 0.1)
         return new(n, d, λ, zeros(n, d), zeros(n, d))
     end
 end

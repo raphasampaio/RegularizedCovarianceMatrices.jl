@@ -4,7 +4,7 @@ struct EmpiricalCovarianceMatrix <: CovarianceMatrixEstimator
     cache1::Matrix{Float64}
     cache2::Matrix{Float64}
 
-    function EmpiricalCovarianceMatrix(n::Integer, d::Integer)
+    function EmpiricalCovarianceMatrix(n::Integer = 0, d::Integer = 0)
         return new(n, d, zeros(n, d), zeros(n, d))
     end
 end

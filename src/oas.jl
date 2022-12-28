@@ -5,7 +5,7 @@ struct OASCovarianceMatrix <: CovarianceMatrixEstimator
     cache2::Matrix{Float64}
     cache3::Matrix{Float64}
 
-    function OASCovarianceMatrix(n::Integer, d::Integer)
+    function OASCovarianceMatrix(n::Integer = 0, d::Integer = 0)
         return new(n, d, zeros(n, d), zeros(n, d), zeros(d, d))
     end
 end
