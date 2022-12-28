@@ -23,8 +23,8 @@ function get_shrinkage(
     trace_mean = tr(covariance) / d
     estimator.cache3 .= covariance .^ 2
     alpha = mean(estimator.cache3)
-    num = alpha + trace_mean ^ 2
-    den = (n + 1.0) * (alpha - (trace_mean ^ 2) / d)
+    num = alpha + trace_mean^2
+    den = (n + 1.0) * (alpha - (trace_mean^2) / d)
 
     return (den == 0) ? 1.0 : min(num / den, 1.0)
 end
@@ -42,8 +42,8 @@ function fit(
     trace_mean = tr(covariance) / d
 
     alpha = mean(covariance .^ 2)
-    num = alpha + trace_mean ^ 2
-    den = (n + 1.0) * (alpha - (trace_mean ^ 2) / d)
+    num = alpha + trace_mean^2
+    den = (n + 1.0) * (alpha - (trace_mean^2) / d)
     shrinkage = (den == 0) ? 1.0 : min(num / den, 1.0)
     shrunk = shrunk_matrix(covariance, shrinkage)
 
