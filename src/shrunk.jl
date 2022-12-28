@@ -30,9 +30,9 @@ function fit!(
     X::AbstractMatrix{<:Real},
     covariance::AbstractMatrix{<:Real},
     mu::AbstractVector{<:Real}
-)::Nothing
+)
     shrunk!(estimator, X, covariance, mu, shrinkage = estimator.shrinkage)
-    return nothing
+    return
 end
 
 function fit!(
@@ -41,7 +41,7 @@ function fit!(
     weights::AbstractVector{<:Real},
     covariance::AbstractMatrix{<:Real},
     mu::AbstractVector{<:Real}
-)::Nothing
+)
     shrunk!(estimator, X, weights, covariance, mu, shrinkage = estimator.shrinkage)
-    return nothing
+    return
 end

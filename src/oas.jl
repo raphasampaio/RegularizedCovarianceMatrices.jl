@@ -44,11 +44,11 @@ function fit(
     return Symmetric(shrunk), mu
 end
 
-function fit!(estimator::OASCovarianceMatrix, X::AbstractMatrix{<:Real}, covariance::AbstractMatrix{<:Real}, mu::AbstractVector{<:Real})::Nothing
+function fit!(estimator::OASCovarianceMatrix, X::AbstractMatrix{<:Real}, covariance::AbstractMatrix{<:Real}, mu::AbstractVector{<:Real})
     empirical!(estimator, X, covariance, mu)
     shrinkage = get_shrinkage(estimator, X, covariance)
     shrunk_matrix!(covariance, shrinkage)
-    return nothing
+    return
 end
 
 function fit!(
@@ -57,9 +57,9 @@ function fit!(
     weights::AbstractVector{<:Real},
     covariance::AbstractMatrix{<:Real},
     mu::AbstractVector{<:Real}
-)::Nothing
+)
     empirical!(estimator, X, weights, covariance, mu)
     shrinkage = get_shrinkage(estimator, X, covariance)
     shrunk_matrix!(covariance, shrinkage)
-    return nothing
+    return
 end

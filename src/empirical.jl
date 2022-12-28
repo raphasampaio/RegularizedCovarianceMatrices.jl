@@ -29,9 +29,9 @@ function fit!(
     X::AbstractMatrix{<:Real},
     covariance::AbstractMatrix{<:Real},
     mu::AbstractVector{<:Real}
-)::Nothing
+)
     empirical!(estimator, X, covariance, mu)
-    return nothing
+    return
 end
 
 function fit!(
@@ -40,9 +40,9 @@ function fit!(
     weights::AbstractVector{<:Real},
     covariance::AbstractMatrix{<:Real},
     mu::AbstractVector{<:Real}
-)::Nothing
+)
     empirical!(estimator, X, weights, covariance, mu)
-    return nothing
+    return
 end
 
 # # function old_empirical_covariance(X::Matrix{T}; weights = ones(size(X, 1)), mu = get_mu(X, weights)) where {T}

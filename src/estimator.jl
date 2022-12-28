@@ -27,7 +27,7 @@ function empirical!(
     X::AbstractMatrix{<:Real},
     covariance::AbstractMatrix{<:Real},
     mu::AbstractVector{<:Real}
-)::Nothing
+)
     n, d = size(X)
 
     update_mu!(X, mu)
@@ -36,7 +36,7 @@ function empirical!(
     mul!(covariance, estimator.cache1', estimator.cache1)
     covariance ./= n
 
-    return nothing
+    return
 end
 
 function empirical!(
@@ -54,7 +54,7 @@ function empirical!(
     mul!(covariance, estimator.cache1', estimator.cache2)
     covariance ./= sum(weights)
 
-    return nothing
+    return
 end
 
 function shrunk(estimator::CovarianceMatrixEstimator, X::AbstractMatrix{<:Real}; mu::AbstractVector{<:Real} = get_mu(X), shrinkage::Float64 = 0.1)
@@ -81,10 +81,10 @@ function shrunk!(
     covariance::AbstractMatrix{<:Real},
     mu::AbstractVector{<:Real};
     shrinkage::Float64 = 0.1
-)::Nothing
+)
     empirical!(estimator, X, covariance, mu)
     shrunk_matrix!(covariance, shrinkage)
-    return nothing
+    return
 end
 
 function shrunk!(
@@ -97,7 +97,7 @@ function shrunk!(
 )
     empirical!(estimator, X, weights, covariance, mu)
     shrunk_matrix!(covariance, shrinkage)
-    return nothing
+    return
 end
 
 function get_mu(X::AbstractMatrix{<:Real})
@@ -153,7 +153,7 @@ function shrunk_matrix!(covariance::AbstractMatrix{<:Real}, λ::Float64)
     for i in 1:d
         covariance[i, i] += trace_shrinkage
     end
-    return nothing
+    return
 end
 
 function translate_to_zero!(X::AbstractMatrix{<:Real}, mu::AbstractVector{<:Real})
