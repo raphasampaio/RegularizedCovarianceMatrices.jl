@@ -44,8 +44,8 @@ function fit(
     alpha = mean(covariance .^ 2)
     num = alpha + trace_mean^2
     den = (n + 1.0) * (alpha - (trace_mean^2) / d)
-    shrinkage = (den == 0) ? 1.0 : min(num / den, 1.0)
-    shrunk = shrunk_matrix(covariance, shrinkage)
+    λ = (den == 0) ? 1.0 : min(num / den, 1.0)
+    shrunk = shrunk_matrix(covariance, λ)
 
     translate_to_mu!(X, mu)
 
@@ -59,8 +59,8 @@ function fit!(
     mu::AbstractVector{<:Real}
 )
     empirical!(estimator, X, covariance, mu)
-    shrinkage = get_shrinkage(estimator, X, covariance)
-    shrunk_matrix!(covariance, shrinkage)
+    λ = get_shrinkage(estimator, X, covariance)
+    shrunk_matrix!(covariance, λ)
     return
 end
 
@@ -72,7 +72,7 @@ function fit!(
     mu::AbstractVector{<:Real}
 )
     empirical!(estimator, X, weights, covariance, mu)
-    shrinkage = get_shrinkage(estimator, X, covariance)
-    shrunk_matrix!(covariance, shrinkage)
+    λ = get_shrinkage(estimator, X, covariance)
+    shrunk_matrix!(covariance, λ)
     return
 end

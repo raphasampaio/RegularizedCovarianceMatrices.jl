@@ -1,12 +1,12 @@
 struct ShrunkCovarianceMatrix <: CovarianceMatrixEstimator
     n::Int
     d::Int
-    shrinkage::Float64
+    λ::Float64
     cache1::Matrix{Float64}
     cache2::Matrix{Float64}
 
-    function ShrunkCovarianceMatrix(n::Integer, d::Integer, shrinkage::Float64 = 0.1)
-        return new(n, d, shrinkage, zeros(n, d), zeros(n, d))
+    function ShrunkCovarianceMatrix(n::Integer, d::Integer, λ::Float64 = 0.1)
+        return new(n, d, λ, zeros(n, d), zeros(n, d))
     end
 end
 
@@ -15,7 +15,7 @@ function fit(
     X::AbstractMatrix{<:Real};
     mu::AbstractVector{<:Real} = get_mu(X)
 )
-    return shrunk(estimator, X, mu = mu, shrinkage = estimator.shrinkage)
+    return shrunk(estimator, X, mu = mu, λ = estimator.λ)
 end
 
 function fit(
@@ -24,7 +24,7 @@ function fit(
     weights::AbstractVector{<:Real};
     mu::AbstractVector{<:Real} = get_mu(X, weights)
 )
-    return shrunk(estimator, X, weights, mu = mu, shrinkage = estimator.shrinkage)
+    return shrunk(estimator, X, weights, mu = mu, λ = estimator.λ)
 end
 
 function fit!(
@@ -33,7 +33,7 @@ function fit!(
     covariance::AbstractMatrix{<:Real},
     mu::AbstractVector{<:Real}
 )
-    shrunk!(estimator, X, covariance, mu, shrinkage = estimator.shrinkage)
+    shrunk!(estimator, X, covariance, mu, λ = estimator.λ)
     return
 end
 
@@ -44,6 +44,6 @@ function fit!(
     covariance::AbstractMatrix{<:Real},
     mu::AbstractVector{<:Real}
 )
-    shrunk!(estimator, X, weights, covariance, mu, shrinkage = estimator.shrinkage)
+    shrunk!(estimator, X, weights, covariance, mu, λ = estimator.λ)
     return
 end

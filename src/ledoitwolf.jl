@@ -75,11 +75,11 @@ function fit(
 
     delta /= d
     beta = min(beta, delta)
-    shrinkage = (beta == 0) ? 0.0 : beta / delta
+    λ = (beta == 0) ? 0.0 : beta / delta
 
     translate_to_mu!(X, mu)
 
-    return shrunk(estimator, X, weights, mu = mu, shrinkage = shrinkage)
+    return shrunk(estimator, X, weights, mu = mu, λ = λ)
 end
 
 function fit!(
@@ -89,8 +89,8 @@ function fit!(
     mu::AbstractVector{<:Real}
 )
     update_mu!(X, mu)
-    shrinkage = get_shrinkage(estimator, X, mu)
-    return shrunk!(estimator, X, covariance, mu, shrinkage = shrinkage)
+    λ = get_shrinkage(estimator, X, mu)
+    return shrunk!(estimator, X, covariance, mu, λ = λ)
 end
 
 function fit!(
@@ -101,6 +101,6 @@ function fit!(
     mu::AbstractVector{<:Real}
 )
     update_mu!(X, weights, mu)
-    shrinkage = get_shrinkage(estimator, X, mu)
-    return shrunk!(estimator, X, weights, covariance, mu, shrinkage = shrinkage)
+    λ = get_shrinkage(estimator, X, mu)
+    return shrunk!(estimator, X, weights, covariance, mu, λ = λ)
 end

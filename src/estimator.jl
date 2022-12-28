@@ -69,10 +69,10 @@ function shrunk(
     estimator::CovarianceMatrixEstimator,
     X::AbstractMatrix{<:Real};
     mu::AbstractVector{<:Real} = get_mu(X),
-    shrinkage::Float64 = 0.1
+    λ::Float64 = 0.1
 )
     covariance, mu = empirical(estimator, X, mu = mu)
-    shrunk = shrunk_matrix(covariance, shrinkage)
+    shrunk = shrunk_matrix(covariance, λ)
     return Symmetric(shrunk), mu
 end
 
@@ -81,10 +81,10 @@ function shrunk(
     X::AbstractMatrix{<:Real},
     weights::AbstractVector{<:Real};
     mu::AbstractVector{<:Real} = get_mu(X, weights),
-    shrinkage::Float64 = 0.1
+    λ::Float64 = 0.1
 )
     covariance, mu = empirical(estimator, X, weights, mu = mu)
-    shrunk = shrunk_matrix(covariance, shrinkage)
+    shrunk = shrunk_matrix(covariance, λ)
     return Symmetric(shrunk), mu
 end
 
@@ -93,10 +93,10 @@ function shrunk!(
     X::AbstractMatrix{<:Real},
     covariance::AbstractMatrix{<:Real},
     mu::AbstractVector{<:Real};
-    shrinkage::Float64 = 0.1
+    λ::Float64 = 0.1
 )
     empirical!(estimator, X, covariance, mu)
-    shrunk_matrix!(covariance, shrinkage)
+    shrunk_matrix!(covariance, λ)
     return
 end
 
@@ -106,10 +106,10 @@ function shrunk!(
     weights::AbstractVector{<:Real},
     covariance::AbstractMatrix{<:Real},
     mu::AbstractVector{<:Real};
-    shrinkage::Float64 = 0.1
+    λ::Float64 = 0.1
 )
     empirical!(estimator, X, weights, covariance, mu)
-    shrunk_matrix!(covariance, shrinkage)
+    shrunk_matrix!(covariance, λ)
     return
 end
 
@@ -151,13 +151,13 @@ function update_mu!(
     end
 end
 
-function shrunk_matrix(covariance::AbstractMatrix{<:Real}, shrinkage::Float64)
+function shrunk_matrix(covariance::AbstractMatrix{<:Real}, λ::Float64)
     d = size(covariance, 2)
 
     trace_mean = tr(covariance) / d
-    shrunk = (1.0 - shrinkage) * covariance
+    shrunk = (1.0 - λ) * covariance
     for i in 1:d
-        shrunk[i, i] += shrinkage * trace_mean
+        shrunk[i, i] += λ * trace_mean
     end
     return shrunk
 end
