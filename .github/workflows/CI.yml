@@ -55,6 +55,6 @@ jobs:
       - run: |
           julia --project=docs -e '
             using Documenter: DocMeta, doctest
-            using RegularizedCovarianceMatriceX
-            DocMeta.setdocmeta!(RegularizedCovarianceMatriceX, :DocTestSetup, :(using RegularizedCovarianceMatriceX); recursive=true)
-            doctest(RegularizedCovarianceMatriceX)'
+            using RegularizedCovarianceMatrices
+            DocMeta.setdocmeta!(RegularizedCovarianceMatrices, :DocTestSetup, :(using RegularizedCovarianceMatrices); recursive=true)
+            doctest(RegularizedCovarianceMatrices)'
