@@ -1,61 +1,52 @@
-function test_empirical(original_X::Matrix{Float64}, original_weights::Vector{Float64})
-    n, d = size(original_X)
-    estimator = RegularizedCovarianceMatrices.EmpiricalCovarianceMatrix(n, d)
+function test_empirical()
+    size = 10
+    dimensions = [2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048]
 
-    X = copy(original_X)
-    weights = copy(original_weights)
+    Random.seed!(1)
+    for i in 1:size, n in dimensions, d in dimensions
+        if n > d
+            X = rand(n, d)
+            X_copy = copy(X)
 
-    @timeit "not-in-place - sklearn" begin
-        sklearn_fitted = fit!(EmpiricalCovariance(), X)
-        sklearn_mu = sklearn_fitted.location_
-        sklean_covariance = sklearn_fitted.covariance_
+            weights = rand(n)
+            weights_copy = copy(weights)
+
+            estimator = EmpiricalCovarianceMatrix(n, d)
+            @timeit "rcm" covariance, mu = RegularizedCovarianceMatrices.fit(estimator, X)
+            @test X == X_copy
+
+            @timeit "base" covariance_base = Statistics.cov(X, corrected = false)
+            @test X == X_copy
+            @test covariance ≈ covariance_base
+
+            @timeit "statsbase" covariance_statsbase = StatsBase.cov(X, corrected = false)
+            @test X == X_copy
+            @test covariance ≈ covariance_statsbase
+    
+            mu_inplace = zeros(d)
+            covariance_inplace = zeros(d, d)
+            estimator = EmpiricalCovarianceMatrix(n, d)
+            @timeit "rcm in-place" RegularizedCovarianceMatrices.fit!(estimator, X, covariance_inplace, mu_inplace)
+            @test X == X_copy
+            @test covariance ≈ covariance_inplace
+            @test mu ≈ mu_inplace
+
+            @timeit "rcm weighted" covariance, mu = RegularizedCovarianceMatrices.fit(estimator, X, weights)
+            @test X == X_copy
+            @test weights == weights_copy
+
+            @timeit "statsbase weighted" covariance_statsbase = StatsBase.cov(X, Weights(weights), corrected = false)
+            @test X == X_copy
+            @test weights == weights_copy
+            @test covariance ≈ covariance_statsbase
+
+            mu_inplace = zeros(d)
+            covariance_inplace = zeros(d, d)
+            @timeit "rcm weighted in-place" RegularizedCovarianceMatrices.fit!(estimator, X, weights, covariance_inplace, mu_inplace)
+            @test X == X_copy
+            @test weights == weights_copy
+            @test covariance ≈ covariance_inplace
+            @test mu ≈ mu_inplace
+        end
     end
-
-    X = copy(original_X)
-    weights = copy(original_weights)
-    mu = zeros(d)
-    covariance = zeros(d, d)
-
-    @timeit "not-in-place" covariance, mu = fit(estimator, X)
-    @test X ≈ original_X
-    @test covariance ≈ sklean_covariance
-    @test mu ≈ sklearn_mu
-
-    X = copy(original_X)
-    weights = copy(original_weights)
-    mu = zeros(d)
-    covariance = zeros(d, d)
-
-    # @timeit "not-in-place - old" covariance, mu = old_empirical_covariance(X)
-    # @test X ≈ original_X
-    # @test covariance ≈ sklean_covariance
-    # @test mu ≈ sklearn_mu
-
-    X = copy(original_X)
-    weights = copy(original_weights)
-    mu = zeros(d)
-    covariance = zeros(d, d)
-
-    @timeit "in-place" RegularizedCovarianceMatrices.fit!(estimator, X, covariance, mu)
-    @test X ≈ original_X
-    @test covariance ≈ sklean_covariance
-    @test mu ≈ sklearn_mu
-
-    X = copy(original_X)
-    weights = copy(original_weights)
-    mu = zeros(d)
-    covariance = zeros(d, d)
-
-    @timeit "weights - not-in-place" weights_covariance, weights_mu = RegularizedCovarianceMatrices.fit(estimator, X, weights)
-    @test X ≈ original_X
-
-    X = copy(original_X)
-    weights = copy(original_weights)
-    mu = zeros(d)
-    covariance = zeros(d, d)
-
-    @timeit "weights - in-place" RegularizedCovarianceMatrices.fit!(estimator, X, weights, covariance, mu)
-    @test original_X ≈ X
-    @test weights_covariance ≈ covariance
-    @test weights_mu ≈ mu
 end
