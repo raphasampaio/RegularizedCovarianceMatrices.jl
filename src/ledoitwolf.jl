@@ -102,5 +102,6 @@ function fit!(
 )
     update_mu!(X, weights, mu)
     λ = get_shrinkage(estimator, X, mu)
-    return shrunk!(estimator, X, weights, covariance, mu, λ = λ)
+    shrunk!(estimator, X, weights, covariance, mu, λ = λ)
+    return
 end
