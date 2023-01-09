@@ -3,10 +3,10 @@ struct EmpiricalCovarianceMatrix <: CovarianceMatrixEstimator
     d::Int
     cache1::Matrix{Float64}
     cache2::Matrix{Float64}
+end
 
-    function EmpiricalCovarianceMatrix(n::Integer = 0, d::Integer = 0)
-        return new(n, d, zeros(n, d), zeros(n, d))
-    end
+function EmpiricalCovarianceMatrix(n::Integer = 0, d::Integer = 0)
+    return EmpiricalCovarianceMatrix(n, d, zeros(n, d), zeros(n, d))
 end
 
 function fit(
