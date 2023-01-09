@@ -47,7 +47,7 @@ d = 2
 
 data = rand(n, d)
 
-estimator = EmpiricalCovarianceMatrix(n, d)
+estimator = ShrunkCovarianceMatrix(n, d)
 covariance_matrix = RegularizedCovarianceMatrices.fit(estimator, data)
 
 ```
