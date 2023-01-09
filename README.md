@@ -2,7 +2,7 @@
 
 <div align="center">
     <a href="/docs/src/assets/">
-        <img src="/docs/src/assets/logo.svg" width=300px alt="RegularizedCovarianceMatrices.jl" />
+        <img src="/docs/src/assets/logo.svg" width=200px alt="RegularizedCovarianceMatrices.jl" />
     </a>
     <br>
     <br>
