@@ -30,7 +30,7 @@ makedocs(;
 )
 
 deploydocs(;
-    repo="github.com/raphasampaio/UnsupervisedRegularizedCovarianceMatricesClustering.jl.git",
+    repo="github.com/raphasampaio/RegularizedCovarianceMatrices.jl.git",
     devbranch="main",
     push_preview = true,
 )
