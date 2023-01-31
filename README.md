@@ -16,6 +16,9 @@
         <img src="https://shields.io/endpoint?url=https://pkgs.genieframework.com/api/v1/badge/RegularizedCovarianceMatrices/label:-sep:">
     </a>
     <br>
+    <a href="https://juliahub.com/ui/Packages/RegularizedCovarianceMatrices/0JHdO">
+        <img src="https://juliahub.com/docs/RegularizedCovarianceMatrices/version.svg" alt="Version"/>
+    </a>
     <a href="https://github.com/raphasampaio/RegularizedCovarianceMatrices.jl/actions/workflows/CI.yml">
         <img src="https://github.com/raphasampaio/RegularizedCovarianceMatrices.jl/actions/workflows/CI.yml/badge.svg" alt="CI"/>
     </a>
