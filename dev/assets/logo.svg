@@ -1,1 +1,31 @@
-<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 287.67 290.045"><defs><style>.cls-1{fill:#915aa0;}.cls-2{fill:#389746;}.cls-3{fill:#cb3b32;}.cls-4{fill:#a286ad;}</style></defs><rect class="cls-1" x="-0.003" y="232.037" width="57.54" height="58.008"/><rect class="cls-2" x="172.616" y="232.037" width="57.54" height="58.008"/><rect class="cls-3" x="230.129" y="232.037" width="57.54" height="58.008"/><rect class="cls-1" x="57.54" y="232.037" width="57.54" height="58.008"/><rect class="cls-4" x="115.078" y="232.037" width="57.54" height="58.008"/><rect class="cls-1" x="-0.003" y="174.03" width="57.54" height="58.008"/><rect class="cls-3" x="172.616" y="174.03" width="57.54" height="58.008"/><rect class="cls-2" x="230.129" y="174.03" width="57.54" height="58.008"/><rect class="cls-4" x="57.54" y="174.03" width="57.54" height="58.008"/><rect class="cls-2" x="115.078" y="174.03" width="57.54" height="58.008"/><rect class="cls-4" x="-0.003" y="116.021" width="57.54" height="58.008"/><rect class="cls-2" x="172.616" y="116.021" width="57.54" height="58.008"/><rect class="cls-4" x="230.129" y="116.021" width="57.54" height="58.008"/><rect class="cls-2" x="57.54" y="116.021" width="57.54" height="58.008"/><rect class="cls-3" x="115.078" y="116.021" width="57.54" height="58.008"/><rect class="cls-2" x="-0.003" y="58.014" width="57.54" height="58.008"/><rect class="cls-4" x="172.616" y="58.014" width="57.54" height="58.008"/><rect class="cls-1" x="230.129" y="58.014" width="57.54" height="58.008"/><rect class="cls-3" x="57.54" y="58.014" width="57.54" height="58.008"/><rect class="cls-2" x="115.078" y="58.014" width="57.54" height="58.008"/><rect class="cls-3" x="-0.003" y="0.007" width="57.54" height="58.008"/><rect class="cls-1" x="172.616" y="0.007" width="57.54" height="58.008"/><rect class="cls-1" x="230.129" y="0.007" width="57.54" height="58.008"/><rect class="cls-2" x="57.54" y="0.007" width="57.54" height="58.008"/><rect class="cls-4" x="115.078" y="0.007" width="57.54" height="58.008"/></svg>
+<svg id="" data-name=""
+	xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 250">
+	<defs>
+		<style>.cls-1{fill:#915aa0;}.cls-2{fill:#389746;}.cls-3{fill:#cb3b32;}.cls-4{fill:#a286ad;}</style>
+	</defs>
+	<rect class="cls-1" x="0"   y="200" width="50" height="50"/>
+	<rect class="cls-2" x="150" y="200" width="50" height="50"/>
+	<rect class="cls-3" x="200" y="200" width="50" height="50"/>
+	<rect class="cls-1" x="50"  y="200" width="50" height="50"/>
+	<rect class="cls-4" x="100" y="200" width="50" height="50"/>
+	<rect class="cls-1" x="0"   y="150" width="50" height="50"/>
+	<rect class="cls-3" x="150" y="150" width="50" height="50"/>
+	<rect class="cls-2" x="200" y="150" width="50" height="50"/>
+	<rect class="cls-4" x="50"  y="150" width="50" height="50"/>
+	<rect class="cls-2" x="100" y="150" width="50" height="50"/>
+	<rect class="cls-4" x="0"   y="100" width="50" height="50"/>
+	<rect class="cls-2" x="150" y="100" width="50" height="50"/>
+	<rect class="cls-4" x="200" y="100" width="50" height="50"/>
+	<rect class="cls-2" x="50"  y="100" width="50" height="50"/>
+	<rect class="cls-3" x="100" y="100" width="50" height="50"/>
+	<rect class="cls-2" x="0"   y="50"  width="50" height="50"/>
+	<rect class="cls-4" x="150" y="50"  width="50" height="50"/>
+	<rect class="cls-1" x="200" y="50"  width="50" height="50"/>
+	<rect class="cls-3" x="50"  y="50"  width="50" height="50"/>
+	<rect class="cls-2" x="100" y="50"  width="50" height="50"/>
+	<rect class="cls-3" x="0"   y="0"   width="50" height="50"/>
+	<rect class="cls-1" x="150" y="0"   width="50" height="50"/>
+	<rect class="cls-1" x="200" y="0"   width="50" height="50"/>
+	<rect class="cls-2" x="50"  y="0"   width="50" height="50"/>
+	<rect class="cls-4" x="100" y="0"   width="50" height="50"/>
+</svg>
