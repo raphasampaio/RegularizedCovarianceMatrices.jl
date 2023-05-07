@@ -1,31 +1,35 @@
-<svg id="" data-name=""
-	xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 250">
+<svg id="" data-name="" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 250">
 	<defs>
-		<style>.cls-1{fill:#915aa0;}.cls-2{fill:#389746;}.cls-3{fill:#cb3b32;}.cls-4{fill:#a286ad;}</style>
+		<style>
+			.purple { fill: #9558b2; }
+			.green { fill: #389826; }
+			.red { fill: #cb3c33; }
+			.blue { fill: #4063d8; }
+		</style>
 	</defs>
-	<rect class="cls-1" x="0"   y="200" width="50" height="50"/>
-	<rect class="cls-2" x="150" y="200" width="50" height="50"/>
-	<rect class="cls-3" x="200" y="200" width="50" height="50"/>
-	<rect class="cls-1" x="50"  y="200" width="50" height="50"/>
-	<rect class="cls-4" x="100" y="200" width="50" height="50"/>
-	<rect class="cls-1" x="0"   y="150" width="50" height="50"/>
-	<rect class="cls-3" x="150" y="150" width="50" height="50"/>
-	<rect class="cls-2" x="200" y="150" width="50" height="50"/>
-	<rect class="cls-4" x="50"  y="150" width="50" height="50"/>
-	<rect class="cls-2" x="100" y="150" width="50" height="50"/>
-	<rect class="cls-4" x="0"   y="100" width="50" height="50"/>
-	<rect class="cls-2" x="150" y="100" width="50" height="50"/>
-	<rect class="cls-4" x="200" y="100" width="50" height="50"/>
-	<rect class="cls-2" x="50"  y="100" width="50" height="50"/>
-	<rect class="cls-3" x="100" y="100" width="50" height="50"/>
-	<rect class="cls-2" x="0"   y="50"  width="50" height="50"/>
-	<rect class="cls-4" x="150" y="50"  width="50" height="50"/>
-	<rect class="cls-1" x="200" y="50"  width="50" height="50"/>
-	<rect class="cls-3" x="50"  y="50"  width="50" height="50"/>
-	<rect class="cls-2" x="100" y="50"  width="50" height="50"/>
-	<rect class="cls-3" x="0"   y="0"   width="50" height="50"/>
-	<rect class="cls-1" x="150" y="0"   width="50" height="50"/>
-	<rect class="cls-1" x="200" y="0"   width="50" height="50"/>
-	<rect class="cls-2" x="50"  y="0"   width="50" height="50"/>
-	<rect class="cls-4" x="100" y="0"   width="50" height="50"/>
+	<rect class="purple" x="0"   y="200" width="50" height="50" />
+	<rect class="green"  x="150" y="200" width="50" height="50" />
+	<rect class="red"    x="200" y="200" width="50" height="50" />
+	<rect class="purple" x="50"  y="200" width="50" height="50" />
+	<rect class="blue"   x="100" y="200" width="50" height="50" />
+	<rect class="purple" x="0"   y="150" width="50" height="50" />
+	<rect class="red"    x="150" y="150" width="50" height="50" />
+	<rect class="green"  x="200" y="150" width="50" height="50" />
+	<rect class="blue"   x="50"  y="150" width="50" height="50" />
+	<rect class="green"  x="100" y="150" width="50" height="50" />
+	<rect class="blue"   x="0"   y="100" width="50" height="50" />
+	<rect class="green"  x="150" y="100" width="50" height="50" />
+	<rect class="blue"   x="200" y="100" width="50" height="50" />
+	<rect class="green"  x="50"  y="100" width="50" height="50" />
+	<rect class="red"    x="100" y="100" width="50" height="50" />
+	<rect class="green"  x="0"   y="50"  width="50" height="50" />
+	<rect class="blue"   x="150" y="50"  width="50" height="50" />
+	<rect class="purple" x="200" y="50"  width="50" height="50" />
+	<rect class="red"    x="50"  y="50"  width="50" height="50" />
+	<rect class="green"  x="100" y="50"  width="50" height="50" />
+	<rect class="red"    x="0"   y="0"   width="50" height="50" />
+	<rect class="purple" x="150" y="0"   width="50" height="50" />
+	<rect class="purple" x="200" y="0"   width="50" height="50" />
+	<rect class="green"  x="50"  y="0"   width="50" height="50" />
+	<rect class="blue"   x="100" y="0"   width="50" height="50" />
 </svg>

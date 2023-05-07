@@ -1,6 +1,2 @@
-@echo off
-
-SET DOCUMENTER_PATH=%~dp0
-DEL "%DOCUMENTER_PATH%\Manifest.toml"
-
-%JULIA_185% --color=yes --project=%DOCUMENTER_PATH% %DOCUMENTER_PATH%\make.jl
+%JULIA_185% --project -e "using Pkg; Pkg.develop(PackageSpec(path=dirname(pwd()))); Pkg.instantiate()"
+%JULIA_185% --project make.jl
