@@ -22,7 +22,7 @@ function test_empirical()
             @timeit "statsbase" covariance_statsbase = StatsBase.cov(X, corrected = false)
             @test X == X_copy
             @test covariance ≈ covariance_statsbase
-    
+
             mu_inplace = zeros(d)
             covariance_inplace = zeros(d, d)
             estimator = EmpiricalCovarianceMatrix(n, d)

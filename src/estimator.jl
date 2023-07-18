@@ -3,7 +3,7 @@ abstract type CovarianceMatrixEstimator end
 function empirical(
     estimator::CovarianceMatrixEstimator,
     X::AbstractMatrix{<:Real};
-    mu::AbstractVector{<:Real} = get_mu(X)
+    mu::AbstractVector{<:Real} = get_mu(X),
 )
     n, d = size(X)
     translated = (X .- mu')
@@ -15,7 +15,7 @@ function empirical(
     estimator::CovarianceMatrixEstimator,
     X::AbstractMatrix{<:Real},
     weights::AbstractVector{<:Real};
-    mu::AbstractVector{<:Real} = get_mu(X, weights)
+    mu::AbstractVector{<:Real} = get_mu(X, weights),
 )
     translated = X .- mu'
     covariance = (translated' * (weights .* translated)) ./ sum(weights)
@@ -26,7 +26,7 @@ function empirical!(
     estimator::CovarianceMatrixEstimator,
     X::AbstractMatrix{<:Real},
     covariance::AbstractMatrix{<:Real},
-    mu::AbstractVector{<:Real}
+    mu::AbstractVector{<:Real},
 )
     n, d = size(X)
 
@@ -47,7 +47,7 @@ function empirical!(
     X::AbstractMatrix{<:Real},
     weights::AbstractVector{<:Real},
     covariance::AbstractMatrix{<:Real},
-    mu::AbstractVector{<:Real}
+    mu::AbstractVector{<:Real},
 )
     n, d = size(X)
 
@@ -69,7 +69,7 @@ function shrunk(
     estimator::CovarianceMatrixEstimator,
     X::AbstractMatrix{<:Real};
     mu::AbstractVector{<:Real} = get_mu(X),
-    λ::Float64 = 0.1
+    λ::Float64 = 0.1,
 )
     covariance, mu = empirical(estimator, X, mu = mu)
     shrunk = shrunk_matrix(covariance, λ)
@@ -81,7 +81,7 @@ function shrunk(
     X::AbstractMatrix{<:Real},
     weights::AbstractVector{<:Real};
     mu::AbstractVector{<:Real} = get_mu(X, weights),
-    λ::Float64 = 0.1
+    λ::Float64 = 0.1,
 )
     covariance, mu = empirical(estimator, X, weights, mu = mu)
     shrunk = shrunk_matrix(covariance, λ)
@@ -93,7 +93,7 @@ function shrunk!(
     X::AbstractMatrix{<:Real},
     covariance::AbstractMatrix{<:Real},
     mu::AbstractVector{<:Real};
-    λ::Float64 = 0.1
+    λ::Float64 = 0.1,
 )
     empirical!(estimator, X, covariance, mu)
     shrunk_matrix!(covariance, λ)
@@ -106,7 +106,7 @@ function shrunk!(
     weights::AbstractVector{<:Real},
     covariance::AbstractMatrix{<:Real},
     mu::AbstractVector{<:Real};
-    λ::Float64 = 0.1
+    λ::Float64 = 0.1,
 )
     empirical!(estimator, X, weights, covariance, mu)
     shrunk_matrix!(covariance, λ)
@@ -136,7 +136,7 @@ end
 function update_mu!(
     X::AbstractMatrix{<:Real},
     weights::AbstractVector{<:Real},
-    mu::AbstractVector{<:Real}
+    mu::AbstractVector{<:Real},
 )
     n, d = size(X)
 

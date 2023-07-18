@@ -13,7 +13,7 @@ end
 function get_shrinkage(
     estimator::LedoitWolfCovarianceMatrix,
     X::AbstractMatrix{<:Real},
-    mu::AbstractVector{<:Real}
+    mu::AbstractVector{<:Real},
 )
     n, d = size(X)
 
@@ -52,7 +52,7 @@ function fit(
     estimator::LedoitWolfCovarianceMatrix,
     X::AbstractMatrix{<:Real},
     weights = ones(size(X, 1)),
-    mu = dropdims(sum(X .* weights, dims = 1) / sum(weights), dims = 1)
+    mu = dropdims(sum(X .* weights, dims = 1) / sum(weights), dims = 1),
 )
     n = size(X, 1)
     d = size(X, 2)
@@ -86,7 +86,7 @@ function fit!(
     estimator::LedoitWolfCovarianceMatrix,
     X::AbstractMatrix{<:Real},
     covariance::AbstractMatrix{<:Real},
-    mu::AbstractVector{<:Real}
+    mu::AbstractVector{<:Real},
 )
     update_mu!(X, mu)
     λ = get_shrinkage(estimator, X, mu)
@@ -98,7 +98,7 @@ function fit!(
     X::AbstractMatrix{<:Real},
     weights::AbstractVector{<:Real},
     covariance::AbstractMatrix{<:Real},
-    mu::AbstractVector{<:Real}
+    mu::AbstractVector{<:Real},
 )
     update_mu!(X, weights, mu)
     λ = get_shrinkage(estimator, X, mu)

@@ -3,7 +3,7 @@ module RegularizedCovarianceMatrices
 using LinearAlgebra
 using Statistics
 
-export 
+export
     CovarianceMatrixEstimator,
     EmpiricalCovarianceMatrix,
     ShrunkCovarianceMatrix,

@@ -13,7 +13,7 @@ end
 function fit(
     estimator::ShrunkCovarianceMatrix,
     X::AbstractMatrix{<:Real};
-    mu::AbstractVector{<:Real} = get_mu(X)
+    mu::AbstractVector{<:Real} = get_mu(X),
 )
     return shrunk(estimator, X, mu = mu, λ = estimator.λ)
 end
@@ -22,7 +22,7 @@ function fit(
     estimator::ShrunkCovarianceMatrix,
     X::AbstractMatrix{<:Real},
     weights::AbstractVector{<:Real};
-    mu::AbstractVector{<:Real} = get_mu(X, weights)
+    mu::AbstractVector{<:Real} = get_mu(X, weights),
 )
     return shrunk(estimator, X, weights, mu = mu, λ = estimator.λ)
 end
@@ -31,7 +31,7 @@ function fit!(
     estimator::ShrunkCovarianceMatrix,
     X::AbstractMatrix{<:Real},
     covariance::AbstractMatrix{<:Real},
-    mu::AbstractVector{<:Real}
+    mu::AbstractVector{<:Real},
 )
     shrunk!(estimator, X, covariance, mu, λ = estimator.λ)
     return
@@ -42,7 +42,7 @@ function fit!(
     X::AbstractMatrix{<:Real},
     weights::AbstractVector{<:Real},
     covariance::AbstractMatrix{<:Real},
-    mu::AbstractVector{<:Real}
+    mu::AbstractVector{<:Real},
 )
     shrunk!(estimator, X, weights, covariance, mu, λ = estimator.λ)
     return

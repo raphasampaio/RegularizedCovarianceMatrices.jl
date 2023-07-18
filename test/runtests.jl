@@ -22,6 +22,8 @@ function test_all()
     @timeit "empirical" test_empirical()
 
     print_timer(sortby = :firstexec)
+
+    return nothing
 end
 
 test_all()
