@@ -9,7 +9,7 @@ Pkg.add("RegularizedCovarianceMatrices")
 
 ## Citing
 
-If you find UnsupervisedClustering useful in your work, we kindly request that you cite the following paper ([preprint](https://arxiv.org/abs/2302.02450)):
+If you find RegularizedCovarianceMatrices useful in your work, we kindly request that you cite the following paper ([preprint](https://arxiv.org/abs/2302.02450)):
 
 ```bibtex
 @article{sampaio2023regularization,
