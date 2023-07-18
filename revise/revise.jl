@@ -8,6 +8,6 @@ Pkg.instantiate()
 
 using RegularizedCovarianceMatrices
 @info("""
-This session is using RegularizedCovarianceMatrices with Revise.jl.
+This session is using RegularizedCovarianceMatrices.jl with Revise.jl.
 For more information visit https://timholy.github.io/Revise.jl/stable/.
 """)

@@ -1,6 +1,5 @@
 @echo off
 
-SET FORMATTER_PATH=%~dp0
-DEL "%BASEPATH%\Manifest.toml"
+SET BASEPATH=%~dp0
 
-%JULIA_185% --color=yes --project=%FORMATTER_PATH% %FORMATTER_PATH%\format.jl
+%JULIA_192% --color=yes --project=%BASEPATH% %BASEPATH%\format.jl

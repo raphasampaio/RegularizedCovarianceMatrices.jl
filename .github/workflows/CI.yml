@@ -22,6 +22,7 @@ jobs:
           - '1.6'
           - '1.7'
           - '1.8'
+          - '1.9'
           - 'nightly'
         os:
           - ubuntu-latest
@@ -38,26 +39,6 @@ jobs:
       - uses: julia-actions/julia-buildpkg@v1
       - uses: julia-actions/julia-runtest@v1
       - uses: julia-actions/julia-processcoverage@v1
-      - uses: codecov/codecov-action@v2
+      - uses: codecov/codecov-action@v3
         with:
           files: lcov.info
-  docs:
-    name: Documentation
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-      - uses: actions/checkout@v3
-      - uses: julia-actions/setup-julia@v1
-        with:
-          version: '1'
-      - uses: julia-actions/julia-buildpkg@v1
-      - uses: julia-actions/julia-docdeploy@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - run: |
-          julia --project=docs -e '
-            using Documenter: DocMeta, doctest
-            using RegularizedCovarianceMatrices
-            DocMeta.setdocmeta!(RegularizedCovarianceMatrices, :DocTestSetup, :(using RegularizedCovarianceMatrices); recursive=true)
-            doctest(RegularizedCovarianceMatrices)'
