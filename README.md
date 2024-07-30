@@ -51,3 +51,16 @@ estimator = ShrunkCovarianceMatrix(n, d, 0.1)
 covariance_matrix = RegularizedCovarianceMatrices.fit(estimator, data)
 
 ```
+
+### Cite
+
+```bibtex
+@article{sampaio2024regularization,
+  title={Regularization and optimization in model-based clustering},
+  author={Sampaio, Raphael Araujo and Garcia, Joaquim Dias and Poggi, Marcus and Vidal, Thibaut},
+  journal={Pattern Recognition},
+  pages={110310},
+  year={2024},
+  publisher={Elsevier}
+}
+```
