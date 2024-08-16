@@ -2,7 +2,7 @@
 
 # RegularizedCovarianceMatrices.jl
 
-[![Documentation](https://img.shields.io/badge/docs-stable-blue.svg)](https://raphasampaio.github.io/RegularizedCovarianceMatrices.jl.jl/stable)
+[![Documentation](https://img.shields.io/badge/docs-stable-blue.svg)](https://raphasampaio.github.io/RegularizedCovarianceMatrices.jl/stable)
 [![CI](https://github.com/raphasampaio/RegularizedCovarianceMatrices.jl/actions/workflows/CI.yml/badge.svg)](https://github.com/raphasampaio/RegularizedCovarianceMatrices.jl/actions/workflows/CI.yml)
 [![codecov](https://codecov.io/gh/raphasampaio/RegularizedCovarianceMatrices.jl/graph/badge.svg?token=VVRUZRIAYQ)](https://codecov.io/gh/raphasampaio/RegularizedCovarianceMatrices.jl)
 [![Aqua](https://raw.githubusercontent.com/JuliaTesting/Aqua.jl/master/badge.svg)](https://github.com/JuliaTesting/Aqua.jl)
