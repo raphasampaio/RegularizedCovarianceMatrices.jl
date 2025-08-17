@@ -42,7 +42,13 @@ function test_empirical()
 
             mu_inplace = zeros(d)
             covariance_inplace = zeros(d, d)
-            @timeit "rcm weighted in-place" RegularizedCovarianceMatrices.fit!(estimator, X, weights, covariance_inplace, mu_inplace)
+            @timeit "rcm weighted in-place" RegularizedCovarianceMatrices.fit!(
+                estimator,
+                X,
+                weights,
+                covariance_inplace,
+                mu_inplace,
+            )
             @test X == X_copy
             @test weights == weights_copy
             @test covariance ≈ covariance_inplace

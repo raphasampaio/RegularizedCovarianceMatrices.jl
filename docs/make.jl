@@ -1,7 +1,12 @@
 using Documenter
 using RegularizedCovarianceMatrices
 
-DocMeta.setdocmeta!(RegularizedCovarianceMatrices, :DocTestSetup, :(using RegularizedCovarianceMatrices); recursive = true)
+DocMeta.setdocmeta!(
+    RegularizedCovarianceMatrices,
+    :DocTestSetup,
+    :(using RegularizedCovarianceMatrices);
+    recursive = true,
+)
 
 makedocs(
     sitename = "RegularizedCovarianceMatrices",
