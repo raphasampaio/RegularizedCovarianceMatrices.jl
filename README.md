@@ -15,7 +15,7 @@ RegularizedCovarianceMatrices.jl is a Julia package that implements several regu
 ### Installation
 
 ```julia
-julia> ] add RegularizedCovarianceMatrices
+pkg> add RegularizedCovarianceMatrices
 ```
 
 ### Example
