@@ -1,7 +1,7 @@
 name = "RegularizedCovarianceMatrices"
 uuid = "5bfb50f7-5e0c-48f2-b6cf-e6e905952022"
 authors = ["raphasampaio", "joaquimg", "mvpoggi", "vidalt"]
-version = "0.1.4"
+version = "0.1.5"
 
 [deps]
 LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
@@ -9,11 +9,11 @@ Statistics = "10745b16-79ce-11e8-11f9-7d13ad32a3b2"
 
 [compat]
 Aqua = "0.6, 0.7, 0.8"
-LinearAlgebra = "1.6 - 1.12"
-Random = "1.6 - 1.12"
-Statistics = "1.0"
+LinearAlgebra = "1"
+Random = "1"
+Statistics = "1"
 StatsBase = "0.33, 0.34"
-Test = "1.6 - 1.12"
+Test = "1"
 TimerOutputs = "0.5"
 julia = "1.6"
 
